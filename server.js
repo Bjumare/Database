@@ -22,18 +22,31 @@ app1.get("/", function(req, res) {
 })
 */
 
-app1.get("/", function(req, res) {
-    res.sendFile(__dirname + "/login.html");
+app1.get("/login", function(req, res) {
+    res.sendFile(__dirname + "/public/login.html");
+})
+
+app1.get("/register", function(req, res) {
+    res.sendFile(__dirname + "/public/register.html");
 })
 
 //app.post
-app1.post("/", function(req, res) {
+app1.post("/login", function(req, res) {
     let newUser = new Users({
         student_id: req.body.student_id,
         password: req.body.password
     });
     newUser.save(); 
-    res.redirect("/");
+    res.redirect("/login");
+})
+
+app1.post("/register", function(req, res) {
+    let newUser = new Users({
+        student_id: req.body.student_id,
+        password: req.body.password
+    });
+    newUser.save(); 
+    res.redirect("/register");
 })
 
 app1.listen(3000, function() {
