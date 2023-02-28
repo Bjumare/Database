@@ -9,26 +9,35 @@ mongoose.connect("mongodb+srv://jumarebejenia:IEBtm7PTWBoWfQqs@login.mamfb1u.mon
 
 //create a data schema
 
-const noteSchema = {
+const userSchema = {
     student_id: String,
     password: String
 }
-const Note = mongoose.model("Note", noteSchema);
+const Users = mongoose.model("User", userSchema);
 
+//pract1 
+/*
 app1.get("/", function(req, res) {
     res.sendFile(__dirname + "/index.html");
+})
+*/
+
+app1.get("/", function(req, res) {
+    res.sendFile(__dirname + "/login.html");
 })
 
 //app.post
 app1.post("/", function(req, res) {
-    let newNote = new Note({
+    let newUser = new Users({
         student_id: req.body.student_id,
         password: req.body.password
     });
-    newNote.save(); 
+    newUser.save(); 
     res.redirect("/");
 })
 
 app1.listen(3000, function() {
-    console.log("server is running in 300");
+    console.log("server is running in 3000");
 })
+
+app1.use('/public',express.static('public'));
